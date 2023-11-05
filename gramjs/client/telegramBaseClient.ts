@@ -127,6 +127,8 @@ export interface TelegramClientParams {
      * What type of network connection to use (Normal Socket (for node) or Websockets (for browsers usually) )
      */
     networkSocket?: typeof PromisedNetSockets | typeof PromisedWebSockets;
+
+	langPack?: string;
 }
 
 const clientParamsDefault = {
@@ -297,7 +299,7 @@ export abstract class TelegramBaseClient {
                 clientParams.systemVersion || os.release().toString() || "1.0",
             appVersion: clientParams.appVersion || "1.0",
             langCode: clientParams.langCode,
-            langPack: "", // this should be left empty.
+            langPack: clientParams.langPack || "", // this should be left empty.
             systemLangCode: clientParams.systemLangCode,
             proxy: initProxy,
         });
